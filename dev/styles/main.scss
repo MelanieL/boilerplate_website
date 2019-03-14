@@ -4,3 +4,17 @@
 	max-width: 900px;
 	margin: 0 auto;
 }
+
+// This is to test SCSS
+* {
+	outline: 1px solid red;
+}
+
+// Testing auto-prefixer:
+html, body {
+  height: 100%;
+  margin: 0;
+  height: 0;
+  display: flex;
+  background: linear-gradient(#e98a00, #f5aa2f)
+} 

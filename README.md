@@ -4,6 +4,7 @@ A boilerplate for basic web projects. Using gulp v4, which had significant chang
 
 # NPM Packages
 
+* gulp-auto-prefixer
 * browserify
 * babel
 * browser-sync
