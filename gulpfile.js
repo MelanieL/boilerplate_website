@@ -5,6 +5,7 @@ const autoprefixer = require("autoprefixer")
 const cssnano = require("cssnano")
 const sourcemaps = require("gulp-sourcemaps")
 const browserSync = require("browser-sync").create();
+const babel = require("gulp-babel")
 
 const paths = {
     styles: {
@@ -12,6 +13,11 @@ const paths = {
         src: "dev/styles/**/*.scss",
         // Compiled files will end up in whichever folder it's found in (partials are not compiled)
         dest: "public/styles"
+    },
+
+    scripts: {
+        src: "dev/scripts/**/*.js",
+        dest: "public/scripts"
     }
 
     // Easily add additional paths
@@ -37,6 +43,16 @@ function style() {
         .pipe(browserSync.stream());
 }
 
+function scripts() {
+    return gulp
+        .src(paths.scripts.src)
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(gulp.dest(paths.scripts.dest))
+        .pipe(browserSync.stream());
+}
+
 // A simple task to reload the page
 function reload() {
     browserSync.reload();
@@ -54,6 +70,7 @@ function watch() {
         // proxy: "yourlocal.dev"
     });
     gulp.watch(paths.styles.src, style);
+    gulp.watch(paths.scripts.src, scripts);
     // We should tell gulp which files to watch to trigger the reload
     // This can be html or whatever you're using to develop your website
     // Note -- you can obviously add the path to the Paths object
@@ -71,11 +88,12 @@ exports.watch = watch
 // This allows you to run it from the commandline using
 // $ gulp style
 exports.style = style;
+exports.scripts = scripts;
 
 /*
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
-var build = gulp.parallel(style, watch);
+var build = gulp.parallel(style, scripts, watch);
 
 /*
  * You can still use `gulp.task` to expose tasks

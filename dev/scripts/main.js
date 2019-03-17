@@ -1,3 +1,3 @@
-const ohHey = "Hello World";
+const ohHey = "It works!";
 
 console.log(ohHey);
