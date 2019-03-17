@@ -5,16 +5,8 @@
 	margin: 0 auto;
 }
 
-// This is to test SCSS
+// For design, remove when project is complete
 * {
-	outline: 1px solid red;
+	outline: 1px solid green;
+	background: lightgray;
 }
-
-// Testing auto-prefixer:
-html, body {
-  height: 100%;
-  margin: 0;
-  height: 0;
-  display: flex;
-  background: linear-gradient(#e98a00, #f5aa2f)
-} 
